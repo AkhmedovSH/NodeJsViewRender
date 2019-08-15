@@ -1,0 +1,38 @@
+<% include ../layout/header.ejs %>
+<header class="header">
+    <div class="container">
+        <a href="/" class="logo"></a>
+        <ul class="menu">
+        <li>
+            <a href="/">Hello</a>
+        </li>
+        </ul>
+    </div>
+</header>
+
+
+<div class="main">
+    <div class="container">
+   <div class="content add-post">
+        <form action="/post/add" method="post" autocomplete="off">
+        <h2>Добавление поста</h2>
+            <div class="form-group">
+                <label for="title">Заголовок</label>
+                <input type="text" name="title" />
+            </div>
+            <div class="form-group">
+                <label for="body">Тело</label>
+                <input type="text" name="body" />
+                <div id="post-body"></div>
+            </div>
+
+            <div class="buttons">
+                <button class="register-button">Добавить</button>
+            </div>
+        </form>
+   </div>
+
+    <% include ../layout/sidebar.ejs %>
+    </div>
+</div>
+<% include ../layout/footer.ejs %>

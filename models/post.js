@@ -1,14 +1,20 @@
 const mongoose = require('mongoose');
+const URLSlugs = require('mongoose-url-slugs');
 
 const postSchema = mongoose.Schema(
   {
     title: {
       type: String,
-      required: true
+      required: true,
+      unique: false
     },
     body: {
       type: String,
       required: true
+    },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
     }
   },
   {
@@ -16,6 +22,7 @@ const postSchema = mongoose.Schema(
   }
 );
 
+postSchema.plugin(URLSlugs('title', { field: 'slug' }));
 postSchema.set('toJSON', {
   virtuals: true
 });
