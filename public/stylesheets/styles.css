@@ -399,3 +399,26 @@
 .register{
   display: none;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination li {
+  margin: 0px 5px;
+  list-style: none;
+  border: 1px solid #e8e8e8;
+  padding: 3px 5px;
+  background-color: white;
+}
+.pagination li a, .pagination li a:visited, .pagination li a:active, .pagination li a:hover {
+  text-decoration: none;
+  color: #00e;
+}
+li.active {
+  font-weight: bolder;
+  border-bottom-color: black;
+}
+li.active a {
+  color: black;
+}

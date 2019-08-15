@@ -7,6 +7,7 @@ const routes = require('./routes/index');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const mocks = require('./mocks');
 
 // Database connection
 mongoose.Promise = global.Promise;
@@ -20,6 +21,7 @@ mongoose.connection
   .once('open', () => {
     const info = mongoose.connections[0];
     console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
+    //mocks();
   });
 
 mongoose.connect(config.MONGO_URL, { useNewUrlParser: true });
@@ -47,17 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use('/javascripts',express.static(__dirname + '/node_modules/jquery/dist/'));
 
 // ROUTES
-app.get('/', (req, res) => {
-  const id = req.session.userId;
-  const login = req.session.userLogin;
-  res.render('index', {
-    user: {
-      id,
-      login
-    }
-  });
-});
-
+app.use('/', routes.archive);
 app.use('/api/auth', routes.auth);
 app.use('/post', routes.post);
 
