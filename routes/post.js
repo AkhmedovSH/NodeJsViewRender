@@ -14,6 +14,22 @@ router.get('/add', (req, res) => {
   });
 });
 
+router.get('/single/:slug', (req, res) => {
+  const userId = req.session.userId;
+  const userLogin = req.session.userLogin;
+  models.Post.findOne({ slug: req.params.slug })
+    .populate('owner', 'login')
+    .then(post => {
+      res.render('post/single', {
+        post,
+        user: {
+          id: userId,
+          login: userLogin
+        }
+      });
+    });
+});
+
 router.post('/add', (req, res) => {
   const userId = req.session.userId;
   const login = req.session.userLogin;
